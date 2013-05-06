@@ -3,6 +3,12 @@
   (:require [clojure.data.csv :as csv])
   (:require [clojure.java.io :as io]))
 
+(defn- clean
+  ;;;trims all whitespace from every item in a list and transforms them into keywords
+  [lst]
+  (for [item lst]
+    (keyword (clojure.string/replace item #"\s+" ""))))
+
 (defn- get-csv
   ;;;performs a GET request ands returns only the body
   ([sym month day year]
@@ -21,9 +27,9 @@
   [file]
   (let [[heading data] [(first (csv/read-csv file)) (rest (csv/read-csv file))]]
     (if (= 1 (count data))
-      (zipmap heading (first data))
+      (zipmap (clean heading) (first data))
       (zipmap
-       heading
+       (clean heading)
        (partition (count data) (apply interleave data))))))
 
 (defn- parse-date
