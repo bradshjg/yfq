@@ -5,6 +5,13 @@ or over an arbitrary range
 
 This is in no way affiliated with Yahoo, or something equally legal sounding
 
+## TODO
+
+Add error handling and abstract functions for returning maps of abritrary data with well-
+formatted dates as keys (look into standard date formatting).
+
+Handle 404 (which manifest as blank csv files that fail upon parsing).
+
 ## Usage
 
 hist-quote [sym date] returns a stock data map for a given date (not formatted well, yet)
