@@ -1,0 +1,17 @@
+(ns yfq.core
+  (:require [clj-http.client :as client])
+  (:require [clojure.data.csv :as csv])
+  (:require [clojure.java.io :as io]))
+
+(defn- get-csv
+  [sym month day year]
+  (:body
+   (client/get
+    (str "http://ichart.finance.yahoo.com/table.csv?s=" sym "&a=" month
+         "&b=" day "&c=" year "&d=" month "&e=" day "&f=" year))))
+
+(defn- parse-csv
+  [file]
+  (into {}
+    (for [[k v] (apply zipmap (csv/read-csv file))]
+      [(keyword k) v])))

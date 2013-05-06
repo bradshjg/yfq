@@ -1,0 +1,8 @@
+http://ichart.finance.yahoo.com/table.csv?s=LUV&a=09&b=5&c=1987&d=09&e=5&f=1987
+
+the abovve returns stock data for Southwest Airlines on Oct 5 1987
+
+note: &a and &d represent the month (where January is 00)
+      &b and &e represent the day
+      &c and &f represent the year
+      data is returned in csv format (comma delimited)
